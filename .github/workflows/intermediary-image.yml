@@ -14,7 +14,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 env:
   REPO_NAME: saka2tetsu
@@ -36,7 +35,12 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Run tests
-        run: pytest
+        run: pytest > result.txt
+      - name: UploadArtifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-test-result
+          path: result.txt
 
   snyk:
     runs-on: ubuntu-latest
