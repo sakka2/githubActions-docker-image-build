@@ -125,6 +125,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     needs: 
       - test
       - snyk
