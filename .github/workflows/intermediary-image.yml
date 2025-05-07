@@ -10,7 +10,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "* * * * *"
+    - cron: "*/10 * * * *"
 
 permissions:
   contents: read
@@ -125,6 +125,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     needs: 
       - test
       - snyk
